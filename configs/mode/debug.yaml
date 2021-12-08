@@ -6,7 +6,7 @@
 defaults:
   - override /trainer: debug.yaml
 
-debug_mode: True
+debug_mode: False
 
 hydra:
   # sets level of all command line loggers to 'DEBUG'

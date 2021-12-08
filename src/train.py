@@ -2,6 +2,8 @@ from typing import List, Optional
 
 import hydra
 from omegaconf import DictConfig
+import wandb
+
 from pytorch_lightning import (
     Callback,
     LightningDataModule,
@@ -60,6 +62,7 @@ def train(config: DictConfig) -> Optional[float]:
     trainer: Trainer = hydra.utils.instantiate(
         config.trainer, callbacks=callbacks, logger=logger, _convert_="partial"
     )
+
 
     # Send some parameters from config to all lightning loggers
     log.info("Logging hyperparameters!")

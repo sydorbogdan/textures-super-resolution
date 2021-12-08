@@ -7,6 +7,7 @@ import rich.syntax
 import rich.tree
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_only
+import numpy as np
 
 
 def get_logger(name=__name__) -> logging.Logger:
@@ -169,3 +170,15 @@ def finish(
             import wandb
 
             wandb.finish()
+
+
+def pad_image(img, desired_shape=(64, 64)):
+    """
+    Pads image to specific shape
+    :param img: np.array
+    :param desired_shape: tuple (h, w)
+    :return: padded image
+    """
+    result = np.zeros((*desired_shape, 4))
+    result[:img.shape[0], :img.shape[1], :] = img
+    return result
